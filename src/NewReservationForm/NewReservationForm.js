@@ -21,7 +21,7 @@ class NewReservationForm extends Component {
     handleSubmit = event => {
         event.preventDefault();
         const newReservation = {
-            id: Date.now(),
+            
             name: this.state.name,
             date: this.state.date,
             time: this.state.time,
@@ -79,7 +79,7 @@ class NewReservationForm extends Component {
                         <label for="number"># in Party:</label>
                         <input
                             name="number"
-                            placeholder=""
+                            placeholder="number"
                             value={this.state.number}
                             onChange={this.handleChange}
                             type="number"
