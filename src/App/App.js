@@ -17,7 +17,7 @@ class App extends Component {
     this.setState({reservations: reservationsData})
   }
 
-  displayReservations = (reservation) => {
+  cancelReservation = (reservation) => {
 
   }
 
@@ -29,7 +29,9 @@ class App extends Component {
 
         </div>
         <div className='resy-container'>
-          <ReservationsContainer reservations={this.state.reservations}/>
+          <ReservationsContainer 
+          reservations={this.state.reservations} 
+          cancelReservation={this.cancelReservation}/>
         </div>
       </div>
     )
