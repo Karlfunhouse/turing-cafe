@@ -8,22 +8,18 @@ class NewReservationForm extends Component {
             name: '',
             date: '',
             time: '',
-            number: 0,
+            number: 1,
             error: ''
 
         }
     }
 
-    handleChange = (event) => {
+    handleChange = event => {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    handleSubit = (event) => {
+    handleSubmit = event => {
         event.preventDefault();
-        if (!this.state.name || !this.state.date || !this.state.time || !this.state.number) {
-            this.setState({error: "Please fill out all areas on the form"})
-            return
-        }
         const newReservation = {
             id: Date.now(),
             name: this.state.name,
@@ -31,12 +27,14 @@ class NewReservationForm extends Component {
             time: this.state.time,
             number: this.state.number
         }
+        console.log(newReservation);
+        
         this.props.addReservation(newReservation)
         this.setState({
                 name: '',
                 date: '',
                 time: '',
-                number: 0,
+                number: 1,
                 error: ''
         })
     }
@@ -45,7 +43,7 @@ class NewReservationForm extends Component {
         return(
             <form className="reservation-form">
                 <h2 className="form-title">Make A Reservation</h2>
-
+                    {this.state.error}
                 <div className="input-wrapper">
                     <div className="input-group">
                         <label for="name">Name:</label>
@@ -54,6 +52,7 @@ class NewReservationForm extends Component {
                             placeholder="name"
                             value={this.state.name}
                             onChange={this.handleChange}
+                            required
                         />
                     </div>
                     <div className="input-group">
@@ -63,6 +62,7 @@ class NewReservationForm extends Component {
                             placeholder="date"
                             value={this.state.date}
                             onChange={this.handleChange}
+                            required
                         />
                     </div>
                     <div className="input-group" >
@@ -72,6 +72,7 @@ class NewReservationForm extends Component {
                             placeholder="time"
                             value={this.state.time}
                             onChange={this.handleChange}
+                            required
                         />
                     </div>     
                     <div className="input-group">
@@ -82,10 +83,11 @@ class NewReservationForm extends Component {
                             value={this.state.number}
                             onChange={this.handleChange}
                             type="number"
+                            required
                         />
                     </div> 
                 </div>
-                {this.state.error}
+                
                 <button onClick={this.handleSubmit}>Make Reservation</button>
             </form>
         )
