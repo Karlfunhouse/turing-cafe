@@ -1,7 +1,26 @@
 import React, { Component } from 'react';
 import './App.css';
+import { fetchReservations } from './apiCalls'
+import ReservationsContainer from './../ReservationsContainer/ReservationsContainer'
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      reservations: []
+    }
+
+  }
+  
+  componentDidMount = async () => {
+    const reservationsData = await fetchReservations()
+    this.setState({reservations: reservationsData})
+  }
+
+  displayReservations = (reservation) => {
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -10,7 +29,7 @@ class App extends Component {
 
         </div>
         <div className='resy-container'>
-          
+          <ReservationsContainer reservations={this.state.reservations}/>
         </div>
       </div>
     )
